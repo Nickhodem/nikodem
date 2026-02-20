@@ -1,19 +1,26 @@
-import { Eye, Brain, Car, FlaskConical } from "lucide-react";
+import { Eye, Brain, Car, Cpu, FlaskConical } from "lucide-react";
 import RevealSection from "./RevealSection";
 
 const experience = [
   {
     icon: Eye,
-    role: "Senior Computer Vision Engineer",
-    org: "Hayden AI",
-    detail: "Production CV pipelines for urban intelligence & smart city infrastructure",
+    role: "Senior Machine Learning Engineer",
+    org: "Luxoft / Hayden AI",
+    detail: "Training CV models for traffic situation awareness; enhancing localization with vision embeddings; AWS/SQL for operational data",
     current: true,
   },
   {
     icon: Car,
-    role: "PhD — Reinforcement Learning",
-    org: "Autonomous Vehicle Control",
-    detail: "Thesis: Control of autonomous vehicles with reinforcement learning",
+    role: "Advanced Machine Learning Engineer",
+    org: "Aptiv",
+    detail: "RL for vehicle motion planning (ACC, Highway Chauffeur, Valet Parking); sim2real transfer; trajectory prediction; C++/Rust on embedded",
+    current: false,
+  },
+  {
+    icon: Cpu,
+    role: "R&D Developer",
+    org: "Flytech UAV",
+    detail: "SLAM for UAVs (vision + LiDAR); Ground Control Station; spatial products from UAV imagery",
     current: false,
   },
 ];

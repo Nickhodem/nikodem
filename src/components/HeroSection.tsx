@@ -52,8 +52,8 @@ const HeroSection = () => {
           className="pl-6"
         >
           <p className="text-lg md:text-xl text-muted-foreground mb-1 leading-relaxed">
-            Senior Computer Vision Engineer @{" "}
-            <span className="text-primary font-semibold glow-text">Hayden AI</span>
+            Senior Machine Learning Engineer @{" "}
+            <span className="text-primary font-semibold glow-text">Luxoft / Hayden AI</span>
           </p>
           <p className="text-base text-muted-foreground mb-10 leading-relaxed font-mono">
             <span className="text-secondary-foreground">PhD(RL)</span>{" "}
