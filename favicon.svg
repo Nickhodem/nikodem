@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+  <defs>
+    <linearGradient id="neuronGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="hsl(160,80%,48%)"/>
+      <stop offset="50%"  stop-color="hsl(180,70%,42%)"/>
+      <stop offset="100%" stop-color="hsl(200,60%,50%)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Long axon going down-right -->
+  <path d="M54 58 Q70 72 80 95" stroke="url(#neuronGrad)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Axon branches -->
+  <path d="M68 80 Q78 76 85 78" stroke="url(#neuronGrad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M74 88 Q72 94 76 97" stroke="url(#neuronGrad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Dendrite 1 - upper left, branching -->
+  <path d="M44 44 Q30 30 18 22" stroke="url(#neuronGrad)" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M30 34 Q22 28 14 32" stroke="url(#neuronGrad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M24 28 Q20 18 22 10" stroke="url(#neuronGrad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Dendrite 2 - upper right -->
+  <path d="M55 43 Q64 28 72 14" stroke="url(#neuronGrad)" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M64 30 Q74 26 82 20" stroke="url(#neuronGrad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M68 22 Q66 12 70 6" stroke="url(#neuronGrad)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Dendrite 3 - left -->
+  <path d="M42 50 Q26 46 10 50" stroke="url(#neuronGrad)" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M22 48 Q16 40 12 34" stroke="url(#neuronGrad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Dendrite 4 - lower left -->
+  <path d="M46 58 Q36 70 26 82" stroke="url(#neuronGrad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M34 73 Q24 72 16 76" stroke="url(#neuronGrad)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Terminal dots -->
+  <circle cx="18" cy="22" r="3.5" fill="hsl(160,80%,48%)"/>
+  <circle cx="14" cy="32" r="2.5" fill="hsl(160,80%,48%)"/>
+  <circle cx="22" cy="10" r="2.5" fill="hsl(160,80%,48%)"/>
+  <circle cx="10" cy="50" r="3.5" fill="hsl(180,70%,42%)"/>
+  <circle cx="12" cy="34" r="2.5" fill="hsl(180,70%,42%)"/>
+  <circle cx="72" cy="14" r="3.5" fill="hsl(180,70%,42%)"/>
+  <circle cx="82" cy="20" r="2.5" fill="hsl(180,70%,42%)"/>
+  <circle cx="70" cy="6"  r="2"   fill="hsl(180,70%,42%)"/>
+  <circle cx="80" cy="95" r="3"   fill="hsl(200,60%,50%)"/>
+  <circle cx="85" cy="78" r="2.5" fill="hsl(200,60%,50%)"/>
+  <circle cx="76" cy="97" r="2"   fill="hsl(200,60%,50%)"/>
+  <circle cx="26" cy="82" r="3"   fill="hsl(200,60%,50%)"/>
+  <circle cx="16" cy="76" r="2.5" fill="hsl(200,60%,50%)"/>
+
+  <!-- Soma (irregular cell body) -->
+  <ellipse cx="50" cy="51" rx="13" ry="11" fill="hsl(180,70%,30%)"/>
+  <ellipse cx="50" cy="51" rx="7"  ry="6"  fill="hsl(160,80%,48%)"/>
+</svg>
