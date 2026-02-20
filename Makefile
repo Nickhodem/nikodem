@@ -5,10 +5,10 @@ build:
 	npm run build
 
 start:
-	npm run start
+	npm run preview
 
 deploy:
-	npm run build && npx gh-pages -d out
+	npm run build && npx gh-pages -d dist --nojekyll
 
 format:
 	npx eslint . --fix
