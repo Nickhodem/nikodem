@@ -44,8 +44,15 @@ const ProjectsSection = () => {
         <RevealSection>
           <p className="font-mono text-primary text-sm mb-3 tracking-wider"># projects</p>
           <h3 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-12 leading-tight">
-            Selected{" "}
-            <span className="text-gradient">work.</span>
+            <a
+              href="https://scholar.google.com/citations?user=zxKsQgcAAAAJ&hl=pl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition-opacity"
+            >
+              Selected{" "}
+              <span className="text-gradient">work.</span>
+            </a>
           </h3>
         </RevealSection>
 
