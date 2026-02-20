@@ -28,7 +28,7 @@ const projects = [
     description: "US Patent Application 17/938,232 (2023). Method for generating driving trajectory training data for adaptive cruise control systems.",
     tags: ["Adaptive Cruise", "ML Training", "Trajectory", "US Patent"],
     status: "patent",
-    href: "https://scholar.google.com/citations?user=zxKsQgcAAAAJ&hl=pl",
+    href: "https://patents.google.com/patent/US20230113790A1/en",
   },
 ];
 
