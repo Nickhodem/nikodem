@@ -53,14 +53,14 @@ const HeroSection = () => {
         >
           <p className="text-lg md:text-xl text-muted-foreground mb-1 leading-relaxed">
             Senior Machine Learning Engineer @{" "}
-            <span className="text-primary font-semibold glow-text">Luxoft / Hayden AI</span>
+            <a href="http://hayden.ai/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold glow-text hover:underline">Hayden AI</a>
           </p>
           <p className="text-base text-muted-foreground mb-10 leading-relaxed font-mono">
             <span className="text-secondary-foreground">PhD(RL)</span>{" "}
             <span className="text-muted-foreground">·</span>{" "}
             <span className="text-secondary-foreground">10 years</span>{" "}
             <span className="text-muted-foreground">·</span>{" "}
-            <span className="text-secondary-foreground">Vision × Learning</span>
+            <span className="text-secondary-foreground">Vision × Learning x Mapping</span>
           </p>
         </motion.div>
 
