@@ -27,8 +27,8 @@ const experience = [
 
 const skills = [
   { icon: Brain, label: "Deep Learning", detail: "PyTorch, CNNs, Transformers, GANs" },
-  { icon: Eye, label: "Computer Vision", detail: "Detection, Segmentation, Tracking" },
-  { icon: FlaskConical, label: "Reinforcement Learning", detail: "PPO, SAC, Sim2Real, Multi-Agent" },
+  { icon: Eye, label: "Computer Vision", detail: "Detection, Segmentation, Tracking, Mapping" },
+  { icon: FlaskConical, label: "Reinforcement Learning", detail: "PPO, SAC, Sim2Real, Imitation Learning" },
 ];
 
 const BioSection = () => {
