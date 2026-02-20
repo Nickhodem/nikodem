@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  basePath: "/nikodem",
+  assetPrefix: "/nikodem/",
 };
 
 export default nextConfig;
