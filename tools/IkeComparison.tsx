@@ -9,6 +9,20 @@ const FORMAT_SHORT = (n: number) => {
   return (n/1e3).toFixed(0) + " tys. zł";
 };
 
+function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: { name: string; color: string; value: number }[]; label?: number }) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: 8, padding: "10px 14px", fontSize: 13 }}>
+      <p style={{ color: "#94a3b8", margin: "0 0 6px" }}>Rok {label}</p>
+      {payload.map(p => (
+        <p key={p.name} style={{ color: p.color, margin: "2px 0" }}>
+          {p.name.replace("_", " ")}: <strong>{FORMAT(p.value)}</strong>
+        </p>
+      ))}
+    </div>
+  );
+}
+
 export default function IkeComparison() {
   const [grossReturn, setGrossReturn] = useState(7);
   const [years, setYears] = useState(32);
@@ -33,20 +47,6 @@ export default function IkeComparison() {
   const final = data[data.length - 1];
   const diff = final.ETF_mBank - final.Generali;
   const totalContrib = annualContrib * years;
-
-  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: { name: string; color: string; value: number }[]; label?: number }) => {
-    if (!active || !payload?.length) return null;
-    return (
-      <div style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: 8, padding: "10px 14px", fontSize: 13 }}>
-        <p style={{ color: "#94a3b8", margin: "0 0 6px" }}>Rok {label}</p>
-        {payload.map(p => (
-          <p key={p.name} style={{ color: p.color, margin: "2px 0" }}>
-            {p.name.replace("_", " ")}: <strong>{FORMAT(p.value)}</strong>
-          </p>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <div style={{ background: "#0f172a", minHeight: "100vh", color: "#f1f5f9", fontFamily: "system-ui, sans-serif", padding: "24px 20px" }}>
