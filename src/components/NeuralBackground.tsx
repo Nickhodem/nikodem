@@ -10,6 +10,8 @@ interface Node {
   pulseSpeed: number;
 }
 
+const GLOW_SPRITE_SIZE = 48;
+
 const NeuralBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -22,8 +24,23 @@ const NeuralBackground = () => {
 
     let animationId: number;
     let nodes: Node[] = [];
-    const nodeCount = 50;
-    const connectionDistance = 180;
+    const nodeCount = 30;
+    const connectionDistance = 280;
+    const FRAME_INTERVAL = 1000 / 30; // 30fps cap
+    let lastFrameTime = 0;
+
+    // Pre-render a single glow sprite once — avoids creating 30 radial
+    // gradients every frame (the main CPU culprit).
+    const glowCanvas = document.createElement("canvas");
+    glowCanvas.width = GLOW_SPRITE_SIZE;
+    glowCanvas.height = GLOW_SPRITE_SIZE;
+    const glowCtx = glowCanvas.getContext("2d")!;
+    const half = GLOW_SPRITE_SIZE / 2;
+    const gradient = glowCtx.createRadialGradient(half, half, 0, half, half, half);
+    gradient.addColorStop(0, "hsla(160, 80%, 48%, 0.3)");
+    gradient.addColorStop(1, "hsla(160, 80%, 48%, 0)");
+    glowCtx.fillStyle = gradient;
+    glowCtx.fillRect(0, 0, GLOW_SPRITE_SIZE, GLOW_SPRITE_SIZE);
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -34,15 +51,20 @@ const NeuralBackground = () => {
       nodes = Array.from({ length: nodeCount }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        radius: Math.random() * 3 + 2,
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: Math.random() * 0.02 + 0.005,
       }));
     };
 
-    const draw = () => {
+    const draw = (timestamp: number) => {
+      animationId = requestAnimationFrame(draw);
+
+      if (timestamp - lastFrameTime < FRAME_INTERVAL) return;
+      lastFrameTime = timestamp;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw connections
@@ -53,12 +75,12 @@ const NeuralBackground = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDistance) {
-            const opacity = (1 - dist / connectionDistance) * 0.15;
+            const opacity = (1 - dist / connectionDistance) * 0.4;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
             ctx.strokeStyle = `hsla(160, 80%, 48%, ${opacity})`;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 1.2;
             ctx.stroke();
           }
         }
@@ -70,14 +92,11 @@ const NeuralBackground = () => {
         const pulseFactor = 0.5 + Math.sin(node.pulse) * 0.5;
         const r = node.radius * (0.8 + pulseFactor * 0.4);
 
-        // Glow
-        const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, r * 6);
-        gradient.addColorStop(0, `hsla(160, 80%, 48%, ${0.3 * pulseFactor})`);
-        gradient.addColorStop(1, "hsla(160, 80%, 48%, 0)");
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, r * 6, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
-        ctx.fill();
+        // Glow via pre-rendered sprite — no gradient creation per frame
+        const glowR = r * 6;
+        ctx.globalAlpha = pulseFactor * 0.8;
+        ctx.drawImage(glowCanvas, node.x - glowR, node.y - glowR, glowR * 2, glowR * 2);
+        ctx.globalAlpha = 1;
 
         // Core
         ctx.beginPath();
@@ -91,18 +110,30 @@ const NeuralBackground = () => {
         if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
         if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
       }
-
-      animationId = requestAnimationFrame(draw);
     };
+
+    const handleVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationId);
+      } else {
+        lastFrameTime = 0;
+        animationId = requestAnimationFrame(draw);
+      }
+    };
+
+    const handleResize = () => { resize(); initNodes(); };
 
     resize();
     initNodes();
-    draw();
-    window.addEventListener("resize", () => { resize(); initNodes(); });
+    animationId = requestAnimationFrame(draw);
+
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibility);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 

@@ -15,10 +15,10 @@ const ContactSection = () => {
         <RevealSection>
           <p className="font-mono text-primary text-sm mb-3 tracking-wider"># contact</p>
           <h3 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4 leading-tight">
-            Let's <span className="text-gradient">build</span> something.
+            Let's <span className="text-gradient">build</span> future.
           </h3>
           <p className="text-muted-foreground mb-12 max-w-md mx-auto text-lg">
-            Open to collaborations in computer vision, reinforcement learning, and applied AI research.
+            Open to collaborations in computer vision, robotics, applied AI research and automation.
           </p>
         </RevealSection>
 
