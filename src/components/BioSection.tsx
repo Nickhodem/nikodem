@@ -5,7 +5,7 @@ const experience = [
   {
     icon: Bus,
     role: "Senior Machine Learning Engineer",
-    org: "Luxoft / Hayden AI",
+    org: "Hayden AI",
     detail: "Training CV models for traffic situation awareness; enhancing localization with vision embeddings; AWS/SQL for operational data",
     current: true,
   },
