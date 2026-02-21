@@ -48,10 +48,11 @@ const ProjectsSection = () => {
               href="https://scholar.google.com/citations?user=zxKsQgcAAAAJ&hl=pl"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-80 transition-opacity"
+              className="inline-flex items-center gap-3 hover:opacity-80 transition-opacity group"
             >
               Selected{" "}
               <span className="text-gradient">work.</span>
+              <ExternalLink className="w-6 h-6 text-primary opacity-50 group-hover:opacity-100 transition-opacity shrink-0" />
             </a>
           </h3>
         </RevealSection>

@@ -1,15 +1,5 @@
 import { motion } from "framer-motion";
 
-const TypewriterLine = ({ text, delay }: { text: string; delay: number }) => (
-  <motion.span
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay, duration: 0.3 }}
-  >
-    {text}
-  </motion.span>
-);
-
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 pt-20 z-10">
@@ -22,7 +12,6 @@ const HeroSection = () => {
           className="font-mono text-sm text-muted-foreground mb-8 space-y-1"
         >
           <p>
-            <TypewriterLine text="" delay={0.3} />
             <span className="text-primary">class</span>{" "}
             <span className="text-accent">SeniorMLEngineer</span>
             <span className="text-muted-foreground">(nn.Module):</span>
@@ -56,11 +45,11 @@ const HeroSection = () => {
             <a href="http://hayden.ai/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold glow-text hover:underline">Hayden AI</a>
           </p>
           <p className="text-base text-muted-foreground mb-10 leading-relaxed font-mono">
-            <span className="text-secondary-foreground">PhD(RL)</span>{" "}
+            <span className="text-secondary-foreground">PhD · RL</span>{" "}
             <span className="text-muted-foreground">·</span>{" "}
             <span className="text-secondary-foreground">10 years</span>{" "}
             <span className="text-muted-foreground">·</span>{" "}
-            <span className="text-secondary-foreground">Vision × Learning x Mapping</span>
+            <span className="text-secondary-foreground">Vision × Learning × Mapping</span>
           </p>
         </motion.div>
 

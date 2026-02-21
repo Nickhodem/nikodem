@@ -1,8 +1,10 @@
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const links = ["mission", "bio", "projects", "contact"];
+  const [open, setOpen] = useState(false);
 
   return (
     <motion.nav
@@ -15,6 +17,8 @@ const Navbar = () => {
         <a href="#" className="font-mono text-primary font-bold text-lg tracking-tight hover:glow-text transition-all">
           self.__init__()
         </a>
+
+        {/* Desktop nav */}
         <div className="hidden sm:flex gap-8 items-center">
           {links.map((link, i) => (
             <motion.a
@@ -29,22 +33,43 @@ const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
             </motion.a>
           ))}
-          {/* tools button — hidden for now
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + links.length * 0.1 }}
-          >
-            <Link
-              to="/ike-comparison"
-              className="font-mono text-sm px-3 py-1 rounded-md border border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-200"
-            >
-              tools
-            </Link>
-          </motion.div>
-          */}
         </div>
+
+        {/* Mobile hamburger button */}
+        <button
+          className="sm:hidden text-muted-foreground hover:text-primary transition-colors"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label={open ? "Close menu" : "Open menu"}
+        >
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
+
+      {/* Mobile dropdown */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="sm:hidden border-t border-border bg-background/80 backdrop-blur-xl overflow-hidden"
+          >
+            <div className="flex flex-col px-6 py-4 gap-4">
+              {links.map((link) => (
+                <a
+                  key={link}
+                  href={`#${link}`}
+                  onClick={() => setOpen(false)}
+                  className="font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  self.{link}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };
